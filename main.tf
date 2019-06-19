@@ -32,7 +32,7 @@ variable "tfe_organization" {
 
 resource "aws_s3_bucket" "cool" {
   bucket = "akentosh-super-cool-bucket"
-  acl    = "public-read"
+  acl    = "private"
   
   server_side_encryption_configuration {
     rule {
