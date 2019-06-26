@@ -42,6 +42,7 @@ resource "aws_s3_bucket" "cool" {
     }
   }
   tags = {
+    Customer = Goodyear
     Owner   = "akentosh"
   }
 }
