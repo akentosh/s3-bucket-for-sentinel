@@ -32,7 +32,7 @@ variable "tfe_organization" {
 
 resource "aws_s3_bucket" "cool" {
   bucket = "akentosh-super-cool-bucket"
-  acl    = "public"
+  acl    = "private"
   
   server_side_encryption_configuration {
     rule {
@@ -42,7 +42,7 @@ resource "aws_s3_bucket" "cool" {
     }
   }
   tags = {
-    Customer = "Goodyear"
+    Customer = "DSW"
     Owner   = "akentosh"
   }
 }
