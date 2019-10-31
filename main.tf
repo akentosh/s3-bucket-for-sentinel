@@ -15,7 +15,7 @@ terraform {
     organization = "akentosh"
 
     workspaces {
-      name = "remote-apply"
+      name = "testing"
     }
   }
 }
