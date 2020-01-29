@@ -3,7 +3,10 @@
 provider "tfe" {
   hostname = var.tfe_hostname
   token    = var.tfe_token
-  version  = ">= 0.4"
+}
+
+provider "aws" {
+  region = var.region
 }
 
 terraform {
@@ -12,37 +15,19 @@ terraform {
     organization = "akentosh"
 
     workspaces {
-      name = "s3-bucket"
+      name = "remote-apply"
     }
   }
 }
 
-variable "tfe_token" {
-}
+module "s3_bucket" {
+  source = "terraform-aws-modules/s3-bucket/aws"
 
-variable "tfe_hostname" {
-  description = "The domain where your TFE is hosted."
-  default     = "app.terraform.io"
-}
+  bucket = "hugs-are-great"
+  acl    = "private"
 
-variable "tfe_organization" {
-  description = "The TFE organization to apply your changes to."
-  default     = "akentosh"
-}
-
-resource "aws_s3_bucket" "cool" {
-  bucket = "akentosh-super-cool-bucket"
-  acl    = "public"
-  
-  server_side_encryption_configuration {
-    rule {
-      apply_server_side_encryption_by_default {
-        sse_algorithm     = "AES256"
-      }
-    }
+  versioning = {
+    enabled = true
   }
-  tags = {
-    Customer = "DSW"
-    Owner   = "akentosh"
-  }
+
 }
