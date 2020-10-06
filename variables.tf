@@ -1,5 +1,5 @@
-variable "tfe_token" {
-}
+#variable "tfe_token" {
+#}
 
 variable "tfe_hostname" {
   description = "The domain where your TFE is hosted."

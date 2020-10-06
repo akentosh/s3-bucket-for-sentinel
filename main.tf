@@ -2,7 +2,7 @@
 
 provider "tfe" {
   hostname = var.tfe_hostname
-  token    = var.tfe_token
+#  token    = var.tfe_token
 }
 
 provider "aws" {
@@ -15,7 +15,7 @@ terraform {
     organization = "akentosh"
 
     workspaces {
-      name = "testing"
+      name = "s3-bucket-for-sentinel"
     }
   }
 }
@@ -24,18 +24,11 @@ module "s3_bucket" {
   source = "terraform-aws-modules/s3-bucket/aws"
 
   bucket = "hugs-are-great"
-  acl    = "public"
+#  acl    = "private"
   versioning = {
     enabled = true
-  server_side_encryption_configuration {
-    rule {
-      apply_server_side_encryption_by_default {
-        sse_algorithm     = "AES256"
-      }
-    }
   }
   tags = {
     Owner   = "akentosh"
   }
-
 }
